@@ -6,7 +6,8 @@ set(CMAKE_C_COMPILER "clang")
 set(CMAKE_C_STANDARD "17")
 set(CMAKE_CXX_COMPILER "clang++")
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -fsycl -fsycl-targets=nvptx64-nvidia-cuda -Wno-unknown-cuda-version")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -Wall -Wextra -fsycl -fsycl-targets=nvptx64-nvidia-cuda -Wno-unknown-cuda-version")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -fsycl -fsycl-targets=nvptx64-nvidia-cuda -Wno-unknown-cuda-version")
 
 project(hexl)
 

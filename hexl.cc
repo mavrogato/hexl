@@ -141,7 +141,7 @@ inline namespace wayland_client
         std::string tmp_path(xdg_runtime_dir);
         tmp_path += "/weston-shared-XXXXXX";
         auto fd = aux::unique_fd{::mkostemp(tmp_path.data(), O_CLOEXEC)};
-        if (fd >= 0) {
+        if (fd) {
             ::unlink(tmp_path.c_str());
         }
         else {
@@ -183,7 +183,7 @@ int main(int argc, char** argv) {
         return 1;
     }
     size_t input_size = std::filesystem::file_size(input_path);
-    auto input_fd = aux::unique_fd{input_path.c_str(), O_RDWR};
+    auto input_fd = aux::unique_fd{::open(input_path.c_str(), O_RDWR)};
     auto input_view = aux::unique_mmap<char>{input_fd, input_size};
 
     auto display = wrapper{wl_display_connect(nullptr)};
